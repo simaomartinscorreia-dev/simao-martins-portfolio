@@ -161,7 +161,6 @@
             color: var(--text-main);
         }
 
-        /* Na Home o poster preenche o quadrado */
         .featured-project-media img {
             width: 100%;
             height: 480px;
@@ -176,7 +175,7 @@
             transform: scale(1.02);
         }
 
-        /* Grelha de Projetos (Filmmaking - Preenche o quadrado) */
+        /* Grelha de Projetos (Filmmaking) */
         .grid-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -368,23 +367,23 @@
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 177.77%;
+            padding-bottom: 177.77%; /* Proporção ideal para Shorts/Vertical (9:16) */
             height: 0;
             background: #000;
             border-radius: 4px;
             overflow: hidden;
         }
 
-        .video-container video {
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            border: 0;
         }
 
-        /* Estilos para a página de Photography (SEM CORTES) */
+        /* Photography */
         .photo-section {
             margin-bottom: 70px;
         }
@@ -420,7 +419,7 @@
             transform: scale(1.01);
         }
 
-        /* Estilos para Other Skills (SEM CORTES) */
+        /* Other Skills */
         .skill-block {
             margin-bottom: 60px;
             border-top: 1px solid var(--border-color);
@@ -469,7 +468,7 @@
             transform: scale(1.01);
         }
 
-        /* Rodapé estruturado */
+        /* Rodapé */
         footer {
             background-color: var(--bg-color);
             border-top: 1px solid var(--border-color);
@@ -546,27 +545,13 @@
             object-fit: contain;
         }
 
-        /* Ajustes Mobile */
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-            .brand-container img {
-                height: 70px;
-            }
-            .page-view, .hero {
-                padding: 30px 15px;
-            }
-            .about-split-grid, .photo-grid-2, .featured-project-split, .videos-grid, .skill-grid-images {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .bts-grid-3 {
-                grid-template-columns: 1fr;
-            }
-            footer {
-                padding: 40px 20px 20px 20px;
-            }
+            header { padding: 15px 20px; }
+            .brand-container img { height: 70px; }
+            .page-view, .hero { padding: 30px 15px; }
+            .about-split-grid, .photo-grid-2, .featured-project-split, .videos-grid, .skill-grid-images { grid-template-columns: 1fr; gap: 20px; }
+            .bts-grid-3 { grid-template-columns: 1fr; }
+            footer { padding: 40px 20px 20px 20px; }
         }
     </style>
 </head>
@@ -587,8 +572,6 @@
             <a href="#other" onclick="showPage('other')" id="nav-other">Other Skills</a>
         </nav>
     </header>
-
-    <!-- CONTEÚDO PRINCIPAL (SPA) -->
 
     <!-- VISTA: HOME -->
     <div id="page-home" class="page-view active">
@@ -700,41 +683,62 @@
                 </div>
 
                 <div class="videos-grid">
+                    <!-- Exemplo do Short do Rui já integrado -->
+                    <div class="video-card">
+                        <h4>Apresentação do Rui (R3)</h4>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/T3d9dK7d6LU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Podes substituir o ID dos links abaixo pelos dos outros vídeos à medida que os colocares no YouTube -->
                     <div class="video-card">
                         <h4>Apresentação Ricardo</h4>
-                        <div class="video-container"><video controls src="Apresentação Ricardo.mp4" poster=""></video></div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                     <div class="video-card">
                         <h4>Vídeo imv. João e David</h4>
-                        <div class="video-container"><video controls src="Vídeo imv. João e David.mp4" poster=""></video></div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                     <div class="video-card">
                         <h4>Apresentação David</h4>
-                        <div class="video-container"><video controls src="Apresentação David.mp4" poster=""></video></div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                     <div class="video-card">
                         <h4>Vídeo ap. terreno Luís Beato</h4>
-                        <div class="video-container"><video controls src="Vídeo ap. terreno Luís Beato.mp4" poster=""></video></div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                     <div class="video-card">
                         <h4>Vídeo Heritage Equipa Sónia Cunha</h4>
-                        <div class="video-container"><video controls src="Vídeo Heritage Equipa Sónia Cunha.mp4" poster=""></video></div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                     <div class="video-card">
                         <h4>Vídeo final perguntas 1</h4>
-                        <div class="video-container"><video controls src="Vídeo final perguntas 1.mov" poster=""></video></div>
-                    </div>
-                    <div class="video-card">
-                        <h4>R3 Vídeo Final</h4>
-                        <div class="video-container"><video controls src="R3 Vídeo Final.mp4" poster=""></video></div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                     <div class="video-card">
                         <h4>Vídeo dia a dia agência Baga</h4>
-                        <div class="video-container"><video controls src="Vídeo dia a dia agência Baga.mp4" poster=""></video></div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                     <div class="video-card">
                         <h4>Vídeo inv. Mafalda Pratas</h4>
-                        <div class="video-container"><video controls src="Vídeo inv. Mafalda Pratas.mp4" poster=""></video></div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/SEU_ID_AQUI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -776,7 +780,6 @@
             <h2>Other Skills</h2>
             <p>Outros interesses criativos e expressões artísticas complementares.</p>
 
-            <!-- Line Art -->
             <div class="skill-block">
                 <h3>Line Art & Esboços</h3>
                 <p>O essencial reduzido a um traço. Uma exploração minimalista onde cada linha procura capturar a forma e a essência sem excessos.</p>
@@ -787,7 +790,6 @@
                 </div>
             </div>
 
-            <!-- Playing Guitar -->
             <div class="skill-block">
                 <h3>Playing Guitar</h3>
                 <p>Mais do que notas numa escala, tocar guitarra é uma pausa no tempo. É uma forma de traduzir em som aquilo que as imagens às vezes não conseguem explicar — um diálogo silencioso entre o ritmo, a introsfeção e o pulsar do momento.</p>
@@ -796,11 +798,10 @@
                     <div class="skill-image-wrapper"><img src="guitar2.png" alt="Guitar 2"></div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- RODAPÉ COMPLETO -->
+    <!-- RODAPÉ -->
     <footer>
         <div class="footer-col">
             <h4>SIMÃO MARTINS</h4>

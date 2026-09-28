@@ -81,6 +81,7 @@
             font-size: 0.95rem;
             font-weight: 500;
             transition: color 0.2s ease;
+            cursor: pointer;
         }
 
         nav a:hover, nav a.active {
@@ -549,6 +550,7 @@
             text-decoration: none;
             font-size: 0.85rem;
             transition: color 0.2s;
+            cursor: pointer;
         }
 
         .footer-col ul li a:hover {
@@ -619,17 +621,17 @@
 
     <!-- CABEÇALHO -->
     <header>
-        <a href="#home" onclick="showPage('home')" class="brand-container">
+        <a onclick="showPage('home')" class="brand-container" style="cursor: pointer;">
             <img src="logo.jpg" alt="Simão Martins Logo">
             <span class="brand-name">SIMÃO MARTINS</span>
         </a>
         <nav>
-            <a href="#home" onclick="showPage('home')" id="nav-home" class="active">Home</a>
-            <a href="#about" onclick="showPage('about')" id="nav-about">About</a>
-            <a href="#filmmaking" onclick="showPage('filmmaking')" id="nav-filmmaking">Filmmaking</a>
-            <a href="#client-work" onclick="showPage('client-work')" id="nav-client-work">Client Work</a>
-            <a href="#photography" onclick="showPlayer('photography')" id="nav-photography" onclick="showPage('photography')">Photography</a>
-            <a href="#other" onclick="showPage('other')" id="nav-other">Other Skills</a>
+            <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+            <a onclick="showPage('about')" id="nav-about">About</a>
+            <a onclick="showPage('filmmaking')" id="nav-filmmaking">Filmmaking</a>
+            <a onclick="showPage('client-work')" id="nav-client-work">Client Work</a>
+            <a onclick="showPage('photography')" id="nav-photography">Photography</a>
+            <a onclick="showPage('other')" id="nav-other">Other Skills</a>
         </nav>
     </header>
 
@@ -932,12 +934,12 @@
         <div class="footer-col">
             <h4>More info</h4>
             <ul>
-                <li><a href="#home" onclick="showPage('home')">Home</a></li>
-                <li><a href="#about" onclick="showPage('about')">About</a></li>
-                <li><a href="#filmmaking" onclick="showPage('filmmaking')">Filmmaking</a></li>
-                <li><a href="#client-work" onclick="showPage('client-work')">Client Work</a></li>
-                <li><a href="#photography" onclick="showPage('photography')">Photography</a></li>
-                <li><a href="#other" onclick="showPage('other')">Other Skills</a></li>
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('about')">About</a></li>
+                <li><a onclick="showPage('filmmaking')">Filmmaking</a></li>
+                <li><a onclick="showPage('client-work')">Client Work</a></li>
+                <li><a onclick="showPage('photography')">Photography</a></li>
+                <li><a onclick="showPage('other')">Other Skills</a></li>
             </ul>
         </div>
         <div class="footer-col">

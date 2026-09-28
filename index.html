@@ -301,7 +301,6 @@
             color: var(--text-main);
         }
 
-        /* Nota pequena para o Behind the Scenes */
         .bts-note {
             font-size: 11px;
             color: #777777;
@@ -385,16 +384,48 @@
             overflow: hidden;
         }
 
-        .video-container iframe {
+        .video-container iframe, .video-container video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: 0;
+            object-fit: cover;
         }
 
-        /* Photography */
+        /* Hamburgo - Vídeo Horizontal em Destaque */
+        .video-card-horizontal {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            padding: 12px;
+            grid-column: 1 / -1;
+            margin-top: 15px;
+        }
+
+        .video-container-horizontal {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            background: #000;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .video-container-horizontal video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            object-fit: cover;
+        }
+
+        /* Photography & Hamburg sections */
         .photo-section {
             margin-bottom: 50px;
         }
@@ -774,15 +805,70 @@
         </div>
     </div>
 
-    <!-- VISTA: PHOTOGRAPHY -->
+    <!-- VISTA: PHOTOGRAPHY (HAMBURGO E ARTE) -->
     <div id="page-photography" class="page-view">
         <div class="container">
+            <!-- Secção Hamburg - Germany -->
             <div class="photo-section">
                 <h2>Hamburg - Germany</h2>
                 <p>Captures and moments from Hamburg, exploring urban architecture, atmosphere and light.</p>
-                <div class="photo-grid-2"></div>
+                
+                <!-- Vídeos de Hamburgo (1 a 4 em 2 colunas, 5 em horizontal em baixo) -->
+                <div class="videos-grid" style="margin-bottom: 25px;">
+                    <div class="video-card">
+                        <h4>Hamburg Video 1</h4>
+                        <div class="video-container">
+                            <video controls src="1.mp4"></video>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <h4>Hamburg Video 2</h4>
+                        <div class="video-container">
+                            <video controls src="2.mp4"></video>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <h4>Hamburg Video 3</h4>
+                        <div class="video-container">
+                            <video controls src="3.mp4"></video>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <h4>Hamburg Video 4</h4>
+                        <div class="video-container">
+                            <video controls src="4.mp4"></video>
+                        </div>
+                    </div>
+                    <!-- 5º Vídeo na horizontal -->
+                    <div class="video-card-horizontal">
+                        <h4>Hamburg Video 5 (Destaque Horizontal)</h4>
+                        <div class="video-container-horizontal">
+                            <video controls src="5.mp4"></video>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fotografias de Hamburgo (1.jpeg a 7.jpeg e WhatsApp) -->
+                <div class="photo-grid-2" style="margin-top: 30px;">
+                    <div class="photo-item"><img src="1.jpeg" alt="Hamburg Photo 1"></div>
+                    <div class="photo-item"><img src="2.jpeg" alt="Hamburg Photo 2"></div>
+                    <div class="photo-item"><img src="3.jpeg" alt="Hamburg Photo 3"></div>
+                    <div class="photo-item"><img src="4.jpeg" alt="Hamburg Photo 4"></div>
+                    <div class="photo-item"><img src="5.jpeg" alt="Hamburg Photo 5"></div>
+                    <div class="photo-item"><img src="6.jpeg" alt="Hamburg Photo 6"></div>
+                    <div class="photo-item"><img src="7.jpeg" alt="Hamburg Photo 7"></div>
+                    <!-- Imagens do WhatsApp organizadas -->
+                    <div class="photo-item"><img src="WhatsApp Image 2026-09-28 at 18.11.53 (1).jpeg" alt="Hamburg WhatsApp Photo 1"></div>
+                    <div class="photo-item"><img src="WhatsApp Image 2026-09-28 at 18.11.53 (2).jpeg" alt="Hamburg WhatsApp Photo 2"></div>
+                    <div class="photo-item"><img src="WhatsApp Image 2026-09-28 at 18.11.53 (3).jpeg" alt="Hamburg WhatsApp Photo 3"></div>
+                    <div class="photo-item"><img src="WhatsApp Image 2026-09-28 at 18.11.53.jpeg" alt="Hamburg WhatsApp Photo 4"></div>
+                    <div class="photo-item"><img src="WhatsApp Image 2026-09-28 at 18.11.56 (1).jpeg" alt="Hamburg WhatsApp Photo 5"></div>
+                    <div class="photo-item"><img src="WhatsApp Image 2026-09-28 at 18.11.56 (2).jpeg" alt="Hamburg WhatsApp Photo 6"></div>
+                    <div class="photo-item"><img src="WhatsApp Image 2026-09-28 at 18.11.56.jpeg" alt="Hamburg WhatsApp Photo 7"></div>
+                </div>
             </div>
 
+            <!-- Secção Artistic Photography -->
             <div class="photo-section" style="border-top: 1px solid var(--border-color); padding-top: 50px;">
                 <h2>Artistic Photography</h2>
                 <p>A collection of experimental photo series and artistic visual explorations focusing on texture, light, form and mood.</p>

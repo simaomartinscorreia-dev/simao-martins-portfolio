@@ -518,11 +518,11 @@
         }
 
         /* ------------------------------------------------------------- */
-        /* REDESIGNS INTERATIVOS E INTUITIVOS (SCROLL + TOGGLE BUTTONS) */
+        /* REDESIGNS INTERATIVOS E DINÂMICOS (SCROLL + SELEÇÃO DIRETA) */
         /* ------------------------------------------------------------- */
         .redesign-scroll-container {
             position: relative;
-            margin-bottom: 90px;
+            margin-bottom: 60px;
         }
 
         .redesign-header-flex {
@@ -567,10 +567,17 @@
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
         }
 
-        /* Caixa do Visualizador Sticky */
+        /* Caixa do Visualizador Sticky que Encolhe ao Clicar */
         .sticky-crossfade-wrapper {
             position: relative;
-            height: 150vh; /* Altura ideal para acionar com scroll suave */
+            height: 140vh; /* Altura padrão para scroll suave */
+            transition: height 0.4s ease;
+        }
+
+        /* Classe ativada por clique para remover o espaço em branco extra de scroll */
+        .sticky-crossfade-wrapper.is-fixed {
+            height: auto !important;
+            margin-bottom: 20px;
         }
 
         .sticky-viewport {
@@ -587,6 +594,12 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .sticky-crossfade-wrapper.is-fixed .sticky-viewport {
+            position: relative !important;
+            top: 0 !important;
         }
 
         .crossfade-layer {
@@ -599,7 +612,7 @@
             align-items: center;
             justify-content: center;
             padding: 25px;
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s ease;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .crossfade-layer img {
@@ -615,7 +628,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             padding: 12px 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -1408,7 +1421,7 @@
             setTimeout(handleReveal, 100);
         }
 
-        // LÓGICA DE BARRA DE SCROLL E ANIMAÇÃO REVEAL
+        // BARRA DE SCROLL E ANIMAÇÕES REVEAL
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1431,11 +1444,14 @@
             }
         }
 
-        // CONTROLADOR DE TRANSITION POR SCROLL AUTOMÁTICO
+        // LÓGICA DE TRANSITION POR SCROLL (SÓ FUNCIONA QUANDO NÃO ESTÁ EM MODO FIXADO POR CLIQUE)
         function handleRedesignCrossfade() {
             const wrappers = document.querySelectorAll('.sticky-crossfade-wrapper');
 
             wrappers.forEach(wrapper => {
+                // Se o utilizador clicou manualmente num botão, o modo fixo está ativo e ignora o scroll
+                if (wrapper.classList.contains('is-fixed')) return;
+
                 const rect = wrapper.getBoundingClientRect();
                 const totalScrollable = wrapper.offsetHeight - window.innerHeight;
 
@@ -1450,7 +1466,7 @@
                 layerOriginal.style.opacity = (1 - progress).toFixed(2);
                 layerImproved.style.opacity = progress.toFixed(2);
 
-                // Atualizar botões de acordo com a posição do scroll
+                // Atualizar estado ativo dos botões conforme o scroll
                 const wrapperId = wrapper.id;
                 const origBtn = document.querySelector(`[onclick*="'${wrapperId}', 'original'"]`);
                 const impBtn = document.querySelector(`[onclick*="'${wrapperId}', 'improved'"]`);
@@ -1467,10 +1483,13 @@
             });
         }
 
-        // MANUSEAMENTO MANUAL VIA BOTÃO
+        // MANUSEAMENTO MANUAL VIA CLIQUE NOS BOTÕES (FIXA E ENCOLHE O SCROLL EXTRA)
         function manualToggle(wrapperId, targetState) {
             const wrapper = document.getElementById(wrapperId);
             if (!wrapper) return;
+
+            // Ativa a classe que remove o espaço extra de scroll
+            wrapper.classList.add('is-fixed');
 
             const layerOriginal = wrapper.querySelector('.layer-original');
             const layerImproved = wrapper.querySelector('.layer-improved');
@@ -1480,13 +1499,13 @@
             if (targetState === 'improved') {
                 layerOriginal.style.opacity = '0';
                 layerImproved.style.opacity = '1';
-                origBtn.classList.remove('active');
-                impBtn.classList.add('active');
+                if (origBtn) origBtn.classList.remove('active');
+                if (impBtn) impBtn.classList.add('active');
             } else {
                 layerOriginal.style.opacity = '1';
                 layerImproved.style.opacity = '0';
-                origBtn.classList.add('active');
-                impBtn.classList.remove('active');
+                if (origBtn) origBtn.classList.add('active');
+                if (impBtn) impBtn.classList.remove('active');
             }
         }
 

@@ -11,7 +11,7 @@
             --text-muted: #aaaaaa;
             --border-color: #1a1a1a;
             --card-bg: #111111;
-            --accent-glow: rgba(255, 255, 255, 0.08);
+            --accent-glow: rgba(255, 255, 255, 0.15);
         }
 
         * {
@@ -72,7 +72,6 @@
             z-index: 1000;
             flex-wrap: wrap;
             gap: 15px;
-            transition: border-color 0.3s ease;
         }
 
         .brand-container {
@@ -115,7 +114,7 @@
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: color 0.3s ease, transform 0.2s ease;
+            transition: color 0.3s ease;
             cursor: pointer;
             position: relative;
         }
@@ -160,7 +159,6 @@
             border-color: #ffffff;
             background: #222;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
         }
 
         /* Sistema de Vistas (SPA) */
@@ -275,13 +273,12 @@
             border-radius: 8px;
             overflow: hidden;
             background: var(--card-bg);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-6px);
             border-color: #555;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
         }
 
         .project-card img {
@@ -298,10 +295,8 @@
             margin: 0 0 8px 0;
             font-size: 1.25rem;
             color: var(--text-main);
-            letter-spacing: 0.5px;
         }
 
-        /* Detalhes de Filme / Botão Voltar */
         .back-btn {
             background: none;
             border: none;
@@ -369,7 +364,6 @@
             margin-top: 0;
             margin-bottom: 15px;
             color: var(--text-main);
-            letter-spacing: 0.5px;
         }
 
         .about-side-box p {
@@ -396,7 +390,6 @@
             margin-top: 0;
             margin-bottom: 20px;
             font-style: italic;
-            letter-spacing: 0.5px;
         }
 
         .bts-grid-3 {
@@ -525,35 +518,67 @@
         }
 
         /* ------------------------------------------------------------- */
-        /* NOVO LAYOUT ANIMADO POR SCROLL DE REDESIGNS (FADE OUT / FADE IN) */
+        /* REDESIGNS INTERATIVOS E INTUITIVOS (SCROLL + TOGGLE BUTTONS) */
         /* ------------------------------------------------------------- */
         .redesign-scroll-container {
             position: relative;
-            margin-bottom: 80px;
+            margin-bottom: 90px;
         }
 
-        .redesign-title-box {
-            margin-bottom: 20px;
+        .redesign-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .redesign-title-box h4 {
-            font-size: 1.4rem;
-            margin: 0 0 5px 0;
+        .redesign-header-flex h4 {
+            font-size: 1.5rem;
+            margin: 0;
             color: var(--text-main);
         }
 
-        /* Área com Scroll-Sticky para transição por Scroll */
+        /* Botões Interativos para Ação Direta */
+        .toggle-switch-group {
+            display: inline-flex;
+            background: #181818;
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid #333;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: #888;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Caixa do Visualizador Sticky */
         .sticky-crossfade-wrapper {
             position: relative;
-            height: 180vh; /* Permite scroll suficiente para a transição */
+            height: 150vh; /* Altura ideal para acionar com scroll suave */
         }
 
         .sticky-viewport {
             position: sticky;
-            top: 100px;
+            top: 90px;
             width: 100%;
             height: 70vh;
-            max-height: 700px;
+            max-height: 680px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -561,7 +586,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
         }
 
         .crossfade-layer {
@@ -573,8 +598,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            transition: opacity 0.1s linear, transform 0.1s linear;
+            padding: 25px;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s ease;
         }
 
         .crossfade-layer img {
@@ -582,53 +607,37 @@
             max-height: 100%;
             object-fit: contain;
             border-radius: 6px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
         }
 
-        /* Emblema dinâmico que avisa em qual versão o utilizador está */
-        .status-badge {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            color: #fff;
-            z-index: 10;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-        }
-
-        /* Dica Visual de Scroll */
-        .scroll-hint {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            background: rgba(0,0,0,0.6);
-            padding: 6px 12px;
-            border-radius: 20px;
-            z-index: 10;
+        /* Barra de Orientação / Dica Intuitiva */
+        .interactive-guide-bar {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #ccc;
         }
 
-        .scroll-hint span {
+        .interactive-guide-bar .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
             display: inline-block;
-            animation: bounce 1.5s infinite;
+            margin-right: 8px;
+            box-shadow: 0 0 10px #00ff88;
+            animation: pulseGlow 1.5s infinite;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(4px); }
+        @keyframes pulseGlow {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.4; transform: scale(0.9); }
         }
 
         /* Photography & Hamburg */
@@ -778,7 +787,6 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            transition: color 0.2s;
         }
 
         .social-icons a:hover {
@@ -1056,55 +1064,56 @@
                 </div>
             </div>
 
-            <!-- Page Redesigns com Animação por Scroll (Fade-In / Fade-Out em Sticky) -->
+            <!-- Page Redesigns ULTRA-INTUITIVOS -->
             <div class="client-project-block reveal">
                 <h3 data-key="redesign_title">Page Redesigns & Visual Upgrades</h3>
-                <p style="color: var(--text-muted); margin-bottom: 35px;" data-key="redesign_desc">Scroll down to experience the visual transformation from original layouts to upgraded concepts.</p>
+                <p style="color: var(--text-muted); margin-bottom: 20px;" data-key="redesign_desc">Experience the brand evolution below. Scroll through the page or click the buttons to switch views.</p>
+
+                <!-- GUIA INTUITIVO PARA O UTILIZADOR -->
+                <div class="interactive-guide-bar">
+                    <span><span class="pulse-dot"></span><strong data-key="guide_txt">INTERACTIVE COMPARISON:</strong> <span data-key="guide_desc">Scroll down or click the toggle buttons to transform the design.</span></span>
+                </div>
 
                 <!-- PROJETO 1: SAM Vestuário -->
                 <div class="redesign-scroll-container">
-                    <div class="redesign-title-box">
+                    <div class="redesign-header-flex">
                         <h4>SAM Vestuário</h4>
+                        <div class="toggle-switch-group">
+                            <button class="toggle-btn active" onclick="manualToggle('redesign-sam', 'original')" id="btn-sam-orig" data-key="original_label">Original Page</button>
+                            <button class="toggle-btn" onclick="manualToggle('redesign-sam', 'improved')" id="btn-sam-imp" data-key="improved_label">Improved Version ✨</button>
+                        </div>
                     </div>
 
                     <div class="sticky-crossfade-wrapper" id="redesign-sam">
                         <div class="sticky-viewport">
-                            <!-- Camada Original -->
                             <div class="crossfade-layer layer-original" style="opacity: 1;">
                                 <img src="antiga_samvestuario.jpg" alt="Original SAM Vestuário Page">
                             </div>
-                            <!-- Camada Melhorada -->
                             <div class="crossfade-layer layer-improved" style="opacity: 0;">
                                 <img src="melhorada_samvestuario.png" alt="Improved SAM Vestuário Concept">
                             </div>
-                            <!-- Emblema de Estado -->
-                            <div class="status-badge" data-key="original_label">Original Page</div>
-                            <!-- Dica de Scroll -->
-                            <div class="scroll-hint"><span data-key="scroll_hint_txt">Scroll down to transform</span> <span>↓</span></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- PROJETO 2: Braga Outlet -->
                 <div class="redesign-scroll-container">
-                    <div class="redesign-title-box">
+                    <div class="redesign-header-flex">
                         <h4>Braga Outlet</h4>
+                        <div class="toggle-switch-group">
+                            <button class="toggle-btn active" onclick="manualToggle('redesign-braga', 'original')" id="btn-braga-orig" data-key="original_label">Original Page</button>
+                            <button class="toggle-btn" onclick="manualToggle('redesign-braga', 'improved')" id="btn-braga-imp" data-key="improved_label">Improved Version ✨</button>
+                        </div>
                     </div>
 
                     <div class="sticky-crossfade-wrapper" id="redesign-braga">
                         <div class="sticky-viewport">
-                            <!-- Camada Original -->
                             <div class="crossfade-layer layer-original" style="opacity: 1;">
                                 <img src="antiga_Braga_outlet.jpg" alt="Original Braga Outlet Page">
                             </div>
-                            <!-- Camada Melhorada -->
                             <div class="crossfade-layer layer-improved" style="opacity: 0;">
                                 <img src="outlet_braga_melhorada.png" alt="Improved Braga Outlet Concept">
                             </div>
-                            <!-- Emblema de Estado -->
-                            <div class="status-badge" data-key="original_label">Original Page</div>
-                            <!-- Dica de Scroll -->
-                            <div class="scroll-hint"><span data-key="scroll_hint_txt">Scroll down to transform</span> <span>↓</span></div>
                         </div>
                     </div>
                 </div>
@@ -1285,10 +1294,11 @@
                 vacuum_title: "Robot Vacuum Cleaner — Concept Commercial",
                 sony_title: "Sony Headphones — Concept Commercial",
                 redesign_title: "Page Redesigns & Visual Upgrades",
-                redesign_desc: "Scroll down to experience the visual transformation from original layouts to upgraded concepts.",
+                redesign_desc: "Experience the brand evolution below. Scroll through the page or click the buttons to switch views.",
+                guide_txt: "INTERACTIVE COMPARISON:",
+                guide_desc: "Scroll down or click the toggle buttons to transform the design.",
                 original_label: "Original Page",
-                improved_label: "Improved Version",
-                scroll_hint_txt: "Scroll down to transform",
+                improved_label: "Improved Version ✨",
                 hamburg_desc: "Captures and moments from Hamburg, exploring urban architecture, atmosphere and light.",
                 artistic_title: "Artistic Photography",
                 artistic_desc: "A collection of experimental photo series and artistic visual explorations focusing on texture, light, form and mood.",
@@ -1343,10 +1353,11 @@
                 vacuum_title: "Aspirador Robô — Anúncio Conceptual",
                 sony_title: "Auscultadores Sony — Anúncio Conceptual",
                 redesign_title: "Reformulação de Páginas & Redesigns",
-                redesign_desc: "Faça scroll para experienciar a transformação visual da página original para o conceito melhorado.",
+                redesign_desc: "Experiencie a evolução da marca abaixo. Faça scroll na página ou clique nos botões para alternar.",
+                guide_txt: "COMPARAÇÃO INTERATIVA:",
+                guide_desc: "Faça scroll para baixo ou use os botões para transformar o design.",
                 original_label: "Página Original",
-                improved_label: "Versão Melhorada",
-                scroll_hint_txt: "Faça scroll para transformar",
+                improved_label: "Versão Melhorada ✨",
                 hamburg_desc: "Captações e momentos em Hamburgo, explorando a arquitetura urbana, luz e atmosfera.",
                 artistic_title: "Fotografia Artística",
                 artistic_desc: "Série fotográfica experimental explorando textura, luz, forma e ambiente visual.",
@@ -1399,16 +1410,12 @@
 
         // LÓGICA DE BARRA DE SCROLL E ANIMAÇÃO REVEAL
         window.addEventListener('scroll', () => {
-            // Barra de Progresso
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('scroll-progress').style.width = scrolled + '%';
 
-            // Elementos Reveal
             handleReveal();
-
-            // Animação Sticky Crossfade de Redesigns
             handleRedesignCrossfade();
         });
 
@@ -1424,7 +1431,7 @@
             }
         }
 
-        // LÓGICA DE STICKY CROSSFADE PARA OS REDESIGNS
+        // CONTROLADOR DE TRANSITION POR SCROLL AUTOMÁTICO
         function handleRedesignCrossfade() {
             const wrappers = document.querySelectorAll('.sticky-crossfade-wrapper');
 
@@ -1434,38 +1441,55 @@
 
                 if (totalScrollable <= 0) return;
 
-                // Calcula a percentagem de progresso de scroll dentro do wrapper
                 let progress = -rect.top / totalScrollable;
-                progress = Math.max(0, Math.min(1, progress)); // Clampa entre 0 e 1
+                progress = Math.max(0, Math.min(1, progress));
 
                 const layerOriginal = wrapper.querySelector('.layer-original');
                 const layerImproved = wrapper.querySelector('.layer-improved');
-                const badge = wrapper.querySelector('.status-badge');
 
-                // Crossfade
                 layerOriginal.style.opacity = (1 - progress).toFixed(2);
                 layerImproved.style.opacity = progress.toFixed(2);
 
-                // Escala subtil
-                layerOriginal.style.transform = `scale(${1 - progress * 0.05})`;
-                layerImproved.style.transform = `scale(${0.95 + progress * 0.05})`;
+                // Atualizar botões de acordo com a posição do scroll
+                const wrapperId = wrapper.id;
+                const origBtn = document.querySelector(`[onclick*="'${wrapperId}', 'original'"]`);
+                const impBtn = document.querySelector(`[onclick*="'${wrapperId}', 'improved'"]`);
 
-                // Atualiza o texto do emblema
-                if (badge) {
+                if (origBtn && impBtn) {
                     if (progress > 0.5) {
-                        badge.innerText = translations[currentLang].improved_label;
-                        badge.style.borderColor = '#ffffff';
-                        badge.style.background = 'rgba(255, 255, 255, 0.15)';
+                        origBtn.classList.remove('active');
+                        impBtn.classList.add('active');
                     } else {
-                        badge.innerText = translations[currentLang].original_label;
-                        badge.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                        badge.style.background = 'rgba(0, 0, 0, 0.8)';
+                        origBtn.classList.add('active');
+                        impBtn.classList.remove('active');
                     }
                 }
             });
         }
 
-        // Inicializa ao carregar a página
+        // MANUSEAMENTO MANUAL VIA BOTÃO
+        function manualToggle(wrapperId, targetState) {
+            const wrapper = document.getElementById(wrapperId);
+            if (!wrapper) return;
+
+            const layerOriginal = wrapper.querySelector('.layer-original');
+            const layerImproved = wrapper.querySelector('.layer-improved');
+            const origBtn = document.querySelector(`[onclick*="'${wrapperId}', 'original'"]`);
+            const impBtn = document.querySelector(`[onclick*="'${wrapperId}', 'improved'"]`);
+
+            if (targetState === 'improved') {
+                layerOriginal.style.opacity = '0';
+                layerImproved.style.opacity = '1';
+                origBtn.classList.remove('active');
+                impBtn.classList.add('active');
+            } else {
+                layerOriginal.style.opacity = '1';
+                layerImproved.style.opacity = '0';
+                origBtn.classList.add('active');
+                impBtn.classList.remove('active');
+            }
+        }
+
         window.addEventListener('load', () => {
             handleReveal();
             handleRedesignCrossfade();

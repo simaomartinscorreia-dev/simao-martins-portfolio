@@ -11,10 +11,15 @@
             --text-muted: #aaaaaa;
             --border-color: #1a1a1a;
             --card-bg: #111111;
+            --accent-glow: rgba(255, 255, 255, 0.08);
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -25,6 +30,31 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Barra de Progresso do Scroll no Topo */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffffff, #666666);
+            width: 0%;
+            z-index: 2000;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Animação Global de Fade Up */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Cabeçalho / Navbar */
@@ -36,10 +66,13 @@
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
-            background-color: var(--bg-color);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
             flex-wrap: wrap;
             gap: 15px;
+            transition: border-color 0.3s ease;
         }
 
         .brand-container {
@@ -55,12 +88,12 @@
             width: auto;
             object-fit: contain;
             image-rendering: -webkit-optimize-contrast;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
         }
 
         .brand-container:hover img {
             transform: scale(1.08) rotate(-1deg);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.35));
         }
 
         .brand-name {
@@ -82,8 +115,24 @@
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: color 0.2s ease;
+            transition: color 0.3s ease, transform 0.2s ease;
             cursor: pointer;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--text-main);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
         }
 
         nav a:hover, nav a.active {
@@ -95,12 +144,12 @@
             background: #111;
             color: #fff;
             border: 1px solid #333;
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 5px;
@@ -108,8 +157,10 @@
         }
 
         .lang-switch-btn:hover {
-            border-color: #666;
+            border-color: #ffffff;
             background: #222;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
         }
 
         /* Sistema de Vistas (SPA) */
@@ -117,6 +168,12 @@
             display: none;
             padding: 40px 20px;
             min-height: 75vh;
+            animation: fadeInPage 0.5s ease forwards;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .page-view.active {
@@ -159,8 +216,11 @@
         }
 
         .hero-intro h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 5px;
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1a1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-intro h2 {
@@ -189,15 +249,16 @@
         .featured-project-media img {
             width: 100%;
             height: 420px;
-            border-radius: 6px;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
             object-fit: cover;
         }
 
         .featured-project-media img:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
         }
 
         /* Grelha de Projetos */
@@ -211,15 +272,16 @@
         .project-card {
             cursor: pointer;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             background: var(--card-bg);
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-4px);
-            border-color: #444;
+            transform: translateY(-6px);
+            border-color: #555;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
         }
 
         .project-card img {
@@ -251,10 +313,12 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .back-btn:hover {
             color: var(--text-main);
+            transform: translateX(-4px);
         }
 
         .film-section-block {
@@ -265,7 +329,7 @@
             width: 100%;
             height: auto;
             max-height: 550px;
-            border-radius: 6px;
+            border-radius: 8px;
             margin-top: 20px;
             border: 1px solid var(--border-color);
             object-fit: contain;
@@ -294,7 +358,7 @@
             width: 100%;
             height: auto;
             max-height: 500px;
-            border-radius: 6px;
+            border-radius: 8px;
             object-fit: cover;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -347,13 +411,13 @@
             max-height: 250px;
             object-fit: cover;
             background: var(--card-bg);
-            border-radius: 4px;
+            border-radius: 6px;
             border: 1px solid var(--border-color);
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
         }
 
         .bts-item img:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
 
         /* Client Work & Spec Work */
@@ -392,9 +456,15 @@
         .video-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             padding: 12px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            border-color: #444;
+            transform: translateY(-4px);
         }
 
         .video-card h4 {
@@ -410,7 +480,7 @@
             padding-bottom: 177.77%;
             height: 0;
             background: #000;
-            border-radius: 4px;
+            border-radius: 6px;
             overflow: hidden;
         }
 
@@ -424,11 +494,10 @@
             object-fit: cover;
         }
 
-        /* Hamburgo - Vídeo Horizontal em Destaque */
         .video-card-horizontal {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             padding: 12px;
             grid-column: 1 / -1;
@@ -438,10 +507,10 @@
         .video-container-horizontal {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             background: #000;
-            border-radius: 4px;
+            border-radius: 6px;
             overflow: hidden;
         }
 
@@ -455,56 +524,111 @@
             object-fit: cover;
         }
 
-        /* Redesign / Before & After */
-        .redesign-item {
+        /* ------------------------------------------------------------- */
+        /* NOVO LAYOUT ANIMADO POR SCROLL DE REDESIGNS (FADE OUT / FADE IN) */
+        /* ------------------------------------------------------------- */
+        .redesign-scroll-container {
+            position: relative;
+            margin-bottom: 80px;
+        }
+
+        .redesign-title-box {
+            margin-bottom: 20px;
+        }
+
+        .redesign-title-box h4 {
+            font-size: 1.4rem;
+            margin: 0 0 5px 0;
+            color: var(--text-main);
+        }
+
+        /* Área com Scroll-Sticky para transição por Scroll */
+        .sticky-crossfade-wrapper {
+            position: relative;
+            height: 180vh; /* Permite scroll suficiente para a transição */
+        }
+
+        .sticky-viewport {
+            position: sticky;
+            top: 100px;
+            width: 100%;
+            height: 70vh;
+            max-height: 700px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-
-        .redesign-item h4 {
-            font-size: 1.2rem;
-            margin: 0 0 15px 0;
-            color: var(--text-main);
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
-        .comparison-box {
-            text-align: center;
-        }
-
-        .comparison-box span {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .comparison-box img {
+        .crossfade-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            max-height: 450px;
-            object-fit: contain;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-            background: #000;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.1s linear, transform 0.1s linear;
         }
 
-        .arrow-divider {
-            font-size: 2rem;
-            color: var(--text-main);
-            font-weight: 300;
-            padding: 0 10px;
+        .crossfade-layer img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        /* Emblema dinâmico que avisa em qual versão o utilizador está */
+        .status-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: #fff;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        /* Dica Visual de Scroll */
+        .scroll-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(0,0,0,0.6);
+            padding: 6px 12px;
+            border-radius: 20px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .scroll-hint span {
+            display: inline-block;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(4px); }
         }
 
         /* Photography & Hamburg */
@@ -522,12 +646,17 @@
         .photo-item {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .photo-item:hover {
+            border-color: #444;
         }
 
         .photo-item img {
@@ -536,11 +665,11 @@
             max-height: 650px;
             object-fit: contain;
             border-radius: 4px;
-            transition: transform 0.2s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .photo-item img:hover {
-            transform: scale(1.01);
+            transform: scale(1.02);
         }
 
         /* Other Skills */
@@ -571,7 +700,7 @@
         .skill-image-wrapper {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -585,11 +714,11 @@
             max-height: 500px;
             object-fit: contain;
             border-radius: 4px;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
         }
 
         .skill-grid-images img:hover {
-            transform: scale(1.01);
+            transform: scale(1.02);
         }
 
         /* Rodapé */
@@ -649,6 +778,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
+            transition: color 0.2s;
         }
 
         .social-icons a:hover {
@@ -691,12 +821,8 @@
                 grid-template-columns: 1fr; 
                 gap: 20px; 
             }
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-            .arrow-divider {
-                transform: rotate(90deg);
-                margin: 10px 0;
+            .sticky-viewport {
+                height: 55vh;
             }
             .bts-grid-3 { 
                 grid-template-columns: 1fr; 
@@ -706,6 +832,9 @@
     </style>
 </head>
 <body>
+
+    <!-- BARRA DE PROGRESSO DE SCROLL -->
+    <div id="scroll-progress"></div>
 
     <!-- CABEÇALHO -->
     <header>
@@ -730,7 +859,7 @@
     <!-- VISTA: HOME -->
     <div id="page-home" class="page-view active">
         <div class="hero">
-            <div class="hero-intro">
+            <div class="hero-intro reveal">
                 <h1>SIMÃO MARTINS</h1>
                 <h2 data-key="hero_subtitle">Marketing Strategist · Filmmaker · Director & Editor</h2>
                 <p style="margin-top: 15px; max-width: 700px;" data-key="hero_text">
@@ -738,7 +867,7 @@
                 </p>
             </div>
 
-            <div class="featured-project-split">
+            <div class="featured-project-split reveal">
                 <div class="featured-project-info">
                     <h2>STILL</h2>
                     <p data-key="still_desc">After becoming increasingly frustrated with his attempts to write and create, a young filmmaker finds himself trapped in a cycle of doubt and isolation.</p>
@@ -755,9 +884,9 @@
     <!-- VISTA: ABOUT -->
     <div id="page-about" class="page-view">
         <div class="container about-page-container">
-            <h2 data-key="about_title">About Me</h2>
+            <h2 class="reveal" data-key="about_title">About Me</h2>
             
-            <div class="about-top-text">
+            <div class="about-top-text reveal">
                 <p data-key="about_p1">I’m 21 years old, natural from Paços de Ferreira in the Porto district, Portugal. Holder of a degree in Marketing and International Business, my mission is centered on transforming brand presence and creating high-value audiovisual content that drives business growth while consistently exceeding client expectations.</p>
                 
                 <p data-key="about_p2">My background in marketing gives me a strategic mindset: I analyze consumer behavior, market positioning, and brand identity. Meanwhile, my passion for filmmaking, directing, cinematography, and editing allows me to translate those strategic goals into visual narratives that evoke deep emotional responses through thoughtful frames, pacing, and sound design.</p>
@@ -769,7 +898,7 @@
                 <p><strong data-key="about_p5">Based in Portugal. Available for marketing strategy, brand content, and audiovisual productions. Let's elevate your brand together.</strong></p>
             </div>
 
-            <div class="about-split-grid">
+            <div class="about-split-grid reveal">
                 <div class="about-image-wrapper">
                     <img src="Screenshot_20260926_004216_Gallery.jpg" alt="Simão Martins">
                 </div>
@@ -780,7 +909,7 @@
                 </div>
             </div>
 
-            <div class="bts-section">
+            <div class="bts-section reveal">
                 <h3 data-key="bts_title">Behind the Scenes</h3>
                 <p class="bts-note" data-key="bts_note">AI-generated conceptual imagery and visual references exploring filmmaking, cinematography and set environments.</p>
                 <div class="bts-grid-3">
@@ -795,9 +924,9 @@
     <!-- VISTA: FILMMAKING -->
     <div id="page-filmmaking" class="page-view">
         <div class="container">
-            <h2 data-key="filmmaking_title">Filmmaking</h2>
-            <p data-key="filmmaking_desc">Independent short films and visual storytelling projects.</p>
-            <div class="grid-gallery">
+            <h2 class="reveal" data-key="filmmaking_title">Filmmaking</h2>
+            <p class="reveal" data-key="filmmaking_desc">Independent short films and visual storytelling projects.</p>
+            <div class="grid-gallery reveal">
                 <div class="project-card" onclick="showPage('film-still')">
                     <img src="crt metrgem 1.jpg" alt="STILL - Short Film">
                     <div class="project-info">
@@ -814,7 +943,7 @@
         <div class="container">
             <button class="back-btn" onclick="showPage('filmmaking')" data-key="back_filmmaking">← Back to Filmmaking</button>
             
-            <div class="film-section-block">
+            <div class="film-section-block reveal">
                 <h1>STILL</h1>
                 <p style="color: #fff; font-weight: 600; margin-bottom: 25px;"><span data-key="still_roles">ROLE: DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR</span><br><span style="color: #888; font-weight: 400;" data-key="still_status">IN PRODUCTION · 2026</span></p>
                 
@@ -829,10 +958,10 @@
     <!-- VISTA: CLIENT WORK -->
     <div id="page-client-work" class="page-view">
         <div class="container">
-            <h2 data-key="client_title">Client Work</h2>
-            <p data-key="client_subtitle">Commercial and professional work for brands, companies and third-party projects.</p>
+            <h2 class="reveal" data-key="client_title">Client Work</h2>
+            <p class="reveal" data-key="client_subtitle">Commercial and professional work for brands, companies and third-party projects.</p>
             
-            <div class="client-project-block">
+            <div class="client-project-block reveal">
                 <h3>RE/MAX WHITE</h3>
                 
                 <div class="client-description">
@@ -902,11 +1031,11 @@
     <!-- VISTA: SPEC WORK & REDESIGNS -->
     <div id="page-spec-work" class="page-view">
         <div class="container">
-            <h2 data-key="spec_title">Spec Work & Redesigns</h2>
-            <p data-key="spec_subtitle">Uncommissioned creative concepts, speculative commercials, and visual page redesigns created to demonstrate brand potential and modern visual direction.</p>
+            <h2 class="reveal" data-key="spec_title">Spec Work & Redesigns</h2>
+            <p class="reveal" data-key="spec_subtitle">Uncommissioned creative concepts, speculative commercials, and visual page redesigns created to demonstrate brand potential and modern visual direction.</p>
 
             <!-- Spec Commercials / Videos -->
-            <div class="client-project-block">
+            <div class="client-project-block reveal">
                 <h3 data-key="spec_commercials_title">Spec Commercials</h3>
                 <p style="color: var(--text-muted); margin-bottom: 20px;" data-key="spec_commercials_desc">Conceptual video projects created independently to showcase product storytelling and commercial video editing.</p>
                 
@@ -927,42 +1056,59 @@
                 </div>
             </div>
 
-            <!-- Page Redesigns / Before & After -->
-            <div class="client-project-block">
+            <!-- Page Redesigns com Animação por Scroll (Fade-In / Fade-Out em Sticky) -->
+            <div class="client-project-block reveal">
                 <h3 data-key="redesign_title">Page Redesigns & Visual Upgrades</h3>
-                <p style="color: var(--text-muted); margin-bottom: 25px;" data-key="redesign_desc">Examples of layout overhauls, comparing original brand layouts with improved visual proposals.</p>
+                <p style="color: var(--text-muted); margin-bottom: 35px;" data-key="redesign_desc">Scroll down to experience the visual transformation from original layouts to upgraded concepts.</p>
 
-                <!-- SAM Vestuário -->
-                <div class="redesign-item">
-                    <h4>SAM Vestuário</h4>
-                    <div class="comparison-grid">
-                        <div class="comparison-box">
-                            <span data-key="original_label">Original Page</span>
-                            <img src="antiga_samvestuario.jpg" alt="Original SAM Vestuario Page">
-                        </div>
-                        <div class="arrow-divider">→</div>
-                        <div class="comparison-box">
-                            <span data-key="improved_label">Improved Version</span>
-                            <img src="melhorada_samvestuario.png" alt="Improved SAM Vestuario Concept">
+                <!-- PROJETO 1: SAM Vestuário -->
+                <div class="redesign-scroll-container">
+                    <div class="redesign-title-box">
+                        <h4>SAM Vestuário</h4>
+                    </div>
+
+                    <div class="sticky-crossfade-wrapper" id="redesign-sam">
+                        <div class="sticky-viewport">
+                            <!-- Camada Original -->
+                            <div class="crossfade-layer layer-original" style="opacity: 1;">
+                                <img src="antiga_samvestuario.jpg" alt="Original SAM Vestuário Page">
+                            </div>
+                            <!-- Camada Melhorada -->
+                            <div class="crossfade-layer layer-improved" style="opacity: 0;">
+                                <img src="melhorada_samvestuario.png" alt="Improved SAM Vestuário Concept">
+                            </div>
+                            <!-- Emblema de Estado -->
+                            <div class="status-badge" data-key="original_label">Original Page</div>
+                            <!-- Dica de Scroll -->
+                            <div class="scroll-hint"><span data-key="scroll_hint_txt">Scroll down to transform</span> <span>↓</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Braga Outlet -->
-                <div class="redesign-item">
-                    <h4>Braga Outlet</h4>
-                    <div class="comparison-grid">
-                        <div class="comparison-box">
-                            <span data-key="original_label">Original Page</span>
-                            <img src="antiga_Braga_outlet.jpg" alt="Original Braga Outlet Page">
-                        </div>
-                        <div class="arrow-divider">→</div>
-                        <div class="comparison-box">
-                            <span data-key="improved_label">Improved Version</span>
-                            <img src="outlet_braga_melhorada.png" alt="Improved Braga Outlet Concept">
+                <!-- PROJETO 2: Braga Outlet -->
+                <div class="redesign-scroll-container">
+                    <div class="redesign-title-box">
+                        <h4>Braga Outlet</h4>
+                    </div>
+
+                    <div class="sticky-crossfade-wrapper" id="redesign-braga">
+                        <div class="sticky-viewport">
+                            <!-- Camada Original -->
+                            <div class="crossfade-layer layer-original" style="opacity: 1;">
+                                <img src="antiga_Braga_outlet.jpg" alt="Original Braga Outlet Page">
+                            </div>
+                            <!-- Camada Melhorada -->
+                            <div class="crossfade-layer layer-improved" style="opacity: 0;">
+                                <img src="outlet_braga_melhorada.png" alt="Improved Braga Outlet Concept">
+                            </div>
+                            <!-- Emblema de Estado -->
+                            <div class="status-badge" data-key="original_label">Original Page</div>
+                            <!-- Dica de Scroll -->
+                            <div class="scroll-hint"><span data-key="scroll_hint_txt">Scroll down to transform</span> <span>↓</span></div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -970,7 +1116,7 @@
     <!-- VISTA: PHOTOGRAPHY -->
     <div id="page-photography" class="page-view">
         <div class="container">
-            <div class="photo-section">
+            <div class="photo-section reveal">
                 <h2>Hamburg - Germany</h2>
                 <p data-key="hamburg_desc">Captures and moments from Hamburg, exploring urban architecture, atmosphere and light.</p>
                 
@@ -1015,7 +1161,7 @@
                 </div>
             </div>
 
-            <div class="photo-section" style="border-top: 1px solid var(--border-color); padding-top: 50px;">
+            <div class="photo-section reveal" style="border-top: 1px solid var(--border-color); padding-top: 50px;">
                 <h2 data-key="artistic_title">Artistic Photography</h2>
                 <p data-key="artistic_desc">A collection of experimental photo series and artistic visual explorations focusing on texture, light, form and mood.</p>
                 <div class="photo-grid-2">
@@ -1038,10 +1184,10 @@
     <!-- VISTA: OTHER SKILLS -->
     <div id="page-other" class="page-view">
         <div class="container">
-            <h2 data-key="other_title">Other Skills</h2>
-            <p data-key="other_subtitle">Other creative interests and complementary artistic expressions.</p>
+            <h2 class="reveal" data-key="other_title">Other Skills</h2>
+            <p class="reveal" data-key="other_subtitle">Other creative interests and complementary artistic expressions.</p>
 
-            <div class="skill-block">
+            <div class="skill-block reveal">
                 <h3 data-key="sketch_title">Line Art & Sketches</h3>
                 <p data-key="sketch_desc">The essentials reduced to a single stroke. A minimalist exploration where every line seeks to capture form and essence without excess.</p>
                 <div class="skill-grid-images">
@@ -1051,7 +1197,7 @@
                 </div>
             </div>
 
-            <div class="skill-block">
+            <div class="skill-block reveal">
                 <h3 data-key="guitar_title">Playing Guitar</h3>
                 <p data-key="guitar_desc">More than notes on a scale, playing the guitar is a pause in time. It is a way to translate into sound what images sometimes cannot explain — a silent dialogue between rhythm, introspection and the pulse of the moment.</p>
                 <div class="skill-grid-images">
@@ -1094,7 +1240,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPT DE NAVEGAÇÃO E SISTEMA MULTILÍNGUA -->
+    <!-- SCRIPT DE NAVEGAÇÃO, ANIMAÇÕES E IDIOMAS -->
     <script>
         let currentLang = 'en';
 
@@ -1139,9 +1285,10 @@
                 vacuum_title: "Robot Vacuum Cleaner — Concept Commercial",
                 sony_title: "Sony Headphones — Concept Commercial",
                 redesign_title: "Page Redesigns & Visual Upgrades",
-                redesign_desc: "Examples of layout overhauls, comparing original brand layouts with improved visual proposals.",
+                redesign_desc: "Scroll down to experience the visual transformation from original layouts to upgraded concepts.",
                 original_label: "Original Page",
                 improved_label: "Improved Version",
+                scroll_hint_txt: "Scroll down to transform",
                 hamburg_desc: "Captures and moments from Hamburg, exploring urban architecture, atmosphere and light.",
                 artistic_title: "Artistic Photography",
                 artistic_desc: "A collection of experimental photo series and artistic visual explorations focusing on texture, light, form and mood.",
@@ -1196,9 +1343,10 @@
                 vacuum_title: "Aspirador Robô — Anúncio Conceptual",
                 sony_title: "Auscultadores Sony — Anúncio Conceptual",
                 redesign_title: "Reformulação de Páginas & Redesigns",
-                redesign_desc: "Exemplos de reformulação de layout, comparando a estrutura original com a versão melhorada.",
+                redesign_desc: "Faça scroll para experienciar a transformação visual da página original para o conceito melhorado.",
                 original_label: "Página Original",
                 improved_label: "Versão Melhorada",
+                scroll_hint_txt: "Faça scroll para transformar",
                 hamburg_desc: "Captações e momentos em Hamburgo, explorando a arquitetura urbana, luz e atmosfera.",
                 artistic_title: "Fotografia Artística",
                 artistic_desc: "Série fotográfica experimental explorando textura, luz, forma e ambiente visual.",
@@ -1217,11 +1365,8 @@
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'pt' : 'en';
-            
-            // Atualiza o texto do botão
             document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'PT | EN' : 'EN | PT';
 
-            // Atualiza todos os elementos com data-key
             const elements = document.querySelectorAll('[data-key]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-key');
@@ -1249,7 +1394,82 @@
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(handleReveal, 100);
         }
+
+        // LÓGICA DE BARRA DE SCROLL E ANIMAÇÃO REVEAL
+        window.addEventListener('scroll', () => {
+            // Barra de Progresso
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+
+            // Elementos Reveal
+            handleReveal();
+
+            // Animação Sticky Crossfade de Redesigns
+            handleRedesignCrossfade();
+        });
+
+        function handleReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        // LÓGICA DE STICKY CROSSFADE PARA OS REDESIGNS
+        function handleRedesignCrossfade() {
+            const wrappers = document.querySelectorAll('.sticky-crossfade-wrapper');
+
+            wrappers.forEach(wrapper => {
+                const rect = wrapper.getBoundingClientRect();
+                const totalScrollable = wrapper.offsetHeight - window.innerHeight;
+
+                if (totalScrollable <= 0) return;
+
+                // Calcula a percentagem de progresso de scroll dentro do wrapper
+                let progress = -rect.top / totalScrollable;
+                progress = Math.max(0, Math.min(1, progress)); // Clampa entre 0 e 1
+
+                const layerOriginal = wrapper.querySelector('.layer-original');
+                const layerImproved = wrapper.querySelector('.layer-improved');
+                const badge = wrapper.querySelector('.status-badge');
+
+                // Crossfade
+                layerOriginal.style.opacity = (1 - progress).toFixed(2);
+                layerImproved.style.opacity = progress.toFixed(2);
+
+                // Escala subtil
+                layerOriginal.style.transform = `scale(${1 - progress * 0.05})`;
+                layerImproved.style.transform = `scale(${0.95 + progress * 0.05})`;
+
+                // Atualiza o texto do emblema
+                if (badge) {
+                    if (progress > 0.5) {
+                        badge.innerText = translations[currentLang].improved_label;
+                        badge.style.borderColor = '#ffffff';
+                        badge.style.background = 'rgba(255, 255, 255, 0.15)';
+                    } else {
+                        badge.innerText = translations[currentLang].original_label;
+                        badge.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                        badge.style.background = 'rgba(0, 0, 0, 0.8)';
+                    }
+                }
+            });
+        }
+
+        // Inicializa ao carregar a página
+        window.addEventListener('load', () => {
+            handleReveal();
+            handleRedesignCrossfade();
+        });
     </script>
 </body>
 </html>

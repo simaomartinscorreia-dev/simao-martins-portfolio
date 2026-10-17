@@ -424,6 +424,37 @@
             object-fit: cover;
         }
 
+        /* Hamburgo - Vídeo Horizontal em Destaque */
+        .video-card-horizontal {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            padding: 12px;
+            grid-column: 1 / -1;
+            margin-top: 15px;
+        }
+
+        .video-container-horizontal {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            background: #000;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .video-container-horizontal video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            object-fit: cover;
+        }
+
         /* Redesign / Before & After */
         .redesign-item {
             background: var(--card-bg);
@@ -874,6 +905,7 @@
             <h2 data-key="spec_title">Spec Work & Redesigns</h2>
             <p data-key="spec_subtitle">Uncommissioned creative concepts, speculative commercials, and visual page redesigns created to demonstrate brand potential and modern visual direction.</p>
 
+            <!-- Spec Commercials / Videos -->
             <div class="client-project-block">
                 <h3 data-key="spec_commercials_title">Spec Commercials</h3>
                 <p style="color: var(--text-muted); margin-bottom: 20px;" data-key="spec_commercials_desc">Conceptual video projects created independently to showcase product storytelling and commercial video editing.</p>
@@ -895,36 +927,39 @@
                 </div>
             </div>
 
+            <!-- Page Redesigns / Before & After -->
             <div class="client-project-block">
                 <h3 data-key="redesign_title">Page Redesigns & Visual Upgrades</h3>
                 <p style="color: var(--text-muted); margin-bottom: 25px;" data-key="redesign_desc">Examples of layout overhauls, comparing original brand layouts with improved visual proposals.</p>
 
+                <!-- SAM Vestuário -->
                 <div class="redesign-item">
-                    <h4 data-key="concept1_title">Brand Page Concept #1</h4>
+                    <h4>SAM Vestuário</h4>
                     <div class="comparison-grid">
                         <div class="comparison-box">
                             <span data-key="original_label">Original Page</span>
-                            <img src="redesign1-original.jpg" alt="Original Page Layout">
+                            <img src="antiga_samvestuario.jpg" alt="Original SAM Vestuario Page">
                         </div>
                         <div class="arrow-divider">→</div>
                         <div class="comparison-box">
                             <span data-key="improved_label">Improved Version</span>
-                            <img src="redesign1-improved.jpg" alt="Improved Page Concept">
+                            <img src="melhorada_samvestuario.png" alt="Improved SAM Vestuario Concept">
                         </div>
                     </div>
                 </div>
 
+                <!-- Braga Outlet -->
                 <div class="redesign-item">
-                    <h4 data-key="concept2_title">Brand Page Concept #2</h4>
+                    <h4>Braga Outlet</h4>
                     <div class="comparison-grid">
                         <div class="comparison-box">
                             <span data-key="original_label">Original Page</span>
-                            <img src="redesign2-original.jpg" alt="Original Page Layout 2">
+                            <img src="antiga_Braga_outlet.jpg" alt="Original Braga Outlet Page">
                         </div>
                         <div class="arrow-divider">→</div>
                         <div class="comparison-box">
                             <span data-key="improved_label">Improved Version</span>
-                            <img src="redesign2-improved.jpg" alt="Improved Page Concept 2">
+                            <img src="outlet_braga_melhorada.png" alt="Improved Braga Outlet Concept">
                         </div>
                     </div>
                 </div>
@@ -1105,8 +1140,6 @@
                 sony_title: "Sony Headphones — Concept Commercial",
                 redesign_title: "Page Redesigns & Visual Upgrades",
                 redesign_desc: "Examples of layout overhauls, comparing original brand layouts with improved visual proposals.",
-                concept1_title: "Brand Page Concept #1",
-                concept2_title: "Brand Page Concept #2",
                 original_label: "Original Page",
                 improved_label: "Improved Version",
                 hamburg_desc: "Captures and moments from Hamburg, exploring urban architecture, atmosphere and light.",
@@ -1164,8 +1197,6 @@
                 sony_title: "Auscultadores Sony — Anúncio Conceptual",
                 redesign_title: "Reformulação de Páginas & Redesigns",
                 redesign_desc: "Exemplos de reformulação de layout, comparando a estrutura original com a versão melhorada.",
-                concept1_title: "Conceito de Página de Marca #1",
-                concept2_title: "Conceito de Página de Marca #2",
                 original_label: "Página Original",
                 improved_label: "Versão Melhorada",
                 hamburg_desc: "Captações e momentos em Hamburgo, explorando a arquitetura urbana, luz e atmosfera.",

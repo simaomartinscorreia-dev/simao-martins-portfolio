@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simão Martins — Filmmaker, Director & Cinematographer</title>
+    <title>Simão Martins — Marketing & Audiovisual Strategy</title>
     <style>
         :root {
             --bg-color: #000000;
@@ -27,7 +27,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Cabeçalho / Navbar com Logótipo Animado */
+        /* Cabeçalho / Navbar */
         header {
             display: flex;
             justify-content: space-between;
@@ -47,6 +47,7 @@
             align-items: center;
             gap: 15px;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .brand-container img {
@@ -71,6 +72,7 @@
 
         nav {
             display: flex;
+            align-items: center;
             gap: 20px;
             flex-wrap: wrap;
         }
@@ -86,6 +88,28 @@
 
         nav a:hover, nav a.active {
             color: var(--text-main);
+        }
+
+        /* Botão de Troca de Língua */
+        .lang-switch-btn {
+            background: #111;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: 10px;
+        }
+
+        .lang-switch-btn:hover {
+            border-color: #666;
+            background: #222;
         }
 
         /* Sistema de Vistas (SPA) */
@@ -176,7 +200,7 @@
             transform: scale(1.02);
         }
 
-        /* Grelha de Projetos (Filmmaking) */
+        /* Grelha de Projetos */
         .grid-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -215,7 +239,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Detalhe do Filme (STILL) */
+        /* Detalhes de Filme / Botão Voltar */
         .back-btn {
             background: none;
             border: none;
@@ -248,7 +272,7 @@
             background: var(--card-bg);
         }
 
-        /* Estilos específicos para a página About */
+        /* About Page */
         .about-page-container {
             max-width: 900px;
             margin: 0 auto;
@@ -332,11 +356,16 @@
             transform: scale(1.02);
         }
 
-        /* Client Work / RE-MAX WHITE */
+        /* Client Work & Spec Work */
         .client-project-block {
             margin-bottom: 50px;
             border-top: 1px solid var(--border-color);
             padding-top: 35px;
+        }
+
+        .client-project-block:first-of-type {
+            border-top: none;
+            padding-top: 0;
         }
 
         .client-project-block h3 {
@@ -395,38 +424,59 @@
             object-fit: cover;
         }
 
-        /* Hamburgo - Vídeo Horizontal em Destaque */
-        .video-card-horizontal {
+        /* Redesign / Before & After */
+        .redesign-item {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            overflow: hidden;
-            padding: 12px;
-            grid-column: 1 / -1;
-            margin-top: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
         }
 
-        .video-container-horizontal {
-            position: relative;
+        .redesign-item h4 {
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            color: var(--text-main);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .comparison-box {
+            text-align: center;
+        }
+
+        .comparison-box span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-box img {
             width: 100%;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
-            height: 0;
-            background: #000;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
             border-radius: 4px;
-            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: #000;
         }
 
-        .video-container-horizontal video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            object-fit: cover;
+        .arrow-divider {
+            font-size: 2rem;
+            color: var(--text-main);
+            font-weight: 300;
+            padding: 0 10px;
         }
 
-        /* Photography & Hamburg sections */
+        /* Photography & Hamburg */
         .photo-section {
             margin-bottom: 50px;
         }
@@ -589,7 +639,7 @@
             object-fit: contain;
         }
 
-        /* RESPONSIVIDADE PARA TELEMÓVEIS E TABLETS */
+        /* Responsividade */
         @media (max-width: 768px) {
             header { 
                 padding: 15px 20px; 
@@ -610,6 +660,13 @@
                 grid-template-columns: 1fr; 
                 gap: 20px; 
             }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .arrow-divider {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
             .bts-grid-3 { 
                 grid-template-columns: 1fr; 
             }
@@ -621,17 +678,21 @@
 
     <!-- CABEÇALHO -->
     <header>
-        <a onclick="showPage('home')" class="brand-container" style="cursor: pointer;">
+        <a onclick="showPage('home')" class="brand-container">
             <img src="logo.jpg" alt="Simão Martins Logo">
             <span class="brand-name">SIMÃO MARTINS</span>
         </a>
         <nav>
-            <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
-            <a onclick="showPage('about')" id="nav-about">About</a>
-            <a onclick="showPage('filmmaking')" id="nav-filmmaking">Filmmaking</a>
-            <a onclick="showPage('client-work')" id="nav-client-work">Client Work</a>
-            <a onclick="showPage('photography')" id="nav-photography">Photography</a>
-            <a onclick="showPage('other')" id="nav-other">Other Skills</a>
+            <a onclick="showPage('home')" id="nav-home" class="active" data-key="nav_home">Home</a>
+            <a onclick="showPage('about')" id="nav-about" data-key="nav_about">About</a>
+            <a onclick="showPage('filmmaking')" id="nav-filmmaking" data-key="nav_filmmaking">Filmmaking</a>
+            <a onclick="showPage('client-work')" id="nav-client-work" data-key="nav_client_work">Client Work</a>
+            <a onclick="showPage('spec-work')" id="nav-spec-work" data-key="nav_spec_work">Spec Work</a>
+            <a onclick="showPage('photography')" id="nav-photography" data-key="nav_photography">Photography</a>
+            <a onclick="showPage('other')" id="nav-other" data-key="nav_other">Other Skills</a>
+            
+            <!-- Botão de Troca de Língua -->
+            <button class="lang-switch-btn" onclick="toggleLanguage()" id="lang-btn">PT | EN</button>
         </nav>
     </header>
 
@@ -640,18 +701,18 @@
         <div class="hero">
             <div class="hero-intro">
                 <h1>SIMÃO MARTINS</h1>
-                <h2>Filmmaker · Director · Cinematographer · Editor</h2>
-                <p style="margin-top: 15px; max-width: 700px;">
-                    I’m a 21-year-old filmmaker from Paços de Ferreira (Porto, Portugal), passionate about visual storytelling and the power of cinema to evoke deep emotions.
+                <h2 data-key="hero_subtitle">Marketing Strategist · Filmmaker · Director & Editor</h2>
+                <p style="margin-top: 15px; max-width: 700px;" data-key="hero_text">
+                    I’m a 21-year-old Marketing & International Business graduate from Paços de Ferreira (Porto). I combine strategic brand growth with high-impact cinematic storytelling to help businesses connect, convert, and exceed client expectations.
                 </p>
             </div>
 
             <div class="featured-project-split">
                 <div class="featured-project-info">
                     <h2>STILL</h2>
-                    <p>After becoming increasingly frustrated with his attempts to write and create, a young filmmaker finds himself trapped in a cycle of doubt and isolation.</p>
-                    <p style="font-size: 0.95rem; color: var(--text-muted);">IN PRODUCTION · 2026</p>
-                    <button class="back-btn" style="margin-top: 15px;" onclick="showPage('film-still')">View Project →</button>
+                    <p data-key="still_desc">After becoming increasingly frustrated with his attempts to write and create, a young filmmaker finds himself trapped in a cycle of doubt and isolation.</p>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);" data-key="still_status">IN PRODUCTION · 2026</p>
+                    <button class="back-btn" style="margin-top: 15px;" onclick="showPage('film-still')" data-key="view_project_btn">View Project →</button>
                 </div>
                 <div class="featured-project-media">
                     <img src="crt metrgem 1.jpg" alt="STILL Poster / Cover" onclick="showPage('film-still')">
@@ -663,18 +724,18 @@
     <!-- VISTA: ABOUT -->
     <div id="page-about" class="page-view">
         <div class="container about-page-container">
-            <h2>About Me</h2>
+            <h2 data-key="about_title">About Me</h2>
             
             <div class="about-top-text">
-                <p>I’m 21 years old and based in Paços de Ferreira, a municipality in the district of Porto, Portugal. My journey in audiovisual production combines academic roots in Marketing and International Business with hands-on professional experience gained through internships, alongside personal projects in directing, cinematography, and editing.</p>
+                <p data-key="about_p1">I’m 21 years old, natural from Paços de Ferreira in the Porto district, Portugal. Holder of a degree in Marketing and International Business, my mission is centered on transforming brand presence and creating high-value audiovisual content that drives business growth while consistently exceeding client expectations.</p>
                 
-                <p>More than just technical execution, I am deeply fascinated by narrative structure and the subtle art of transmitting emotion through different takes, framing, and visual choices. Every scene is an opportunity to communicate a feeling, a tension, or an unspoken thought directly to the spectator.</p>
+                <p data-key="about_p2">My background in marketing gives me a strategic mindset: I analyze consumer behavior, market positioning, and brand identity. Meanwhile, my passion for filmmaking, directing, cinematography, and editing allows me to translate those strategic goals into visual narratives that evoke deep emotional responses through thoughtful frames, pacing, and sound design.</p>
                 
-                <p>During my professional internship, I expanded my understanding of on-set dynamics, production workflows, and visual communication strategies. Parallel to this, I dedicate myself to independent short films and personal creative endeavors to sharpen my vision.</p>
+                <p data-key="about_p3">During my professional internship, I honed my hands-on experience in real-world workflows, client relations, and visual communication. Parallel to this, I continuously develop independent short films and spec commercials as personal projects to refine my creative vision and push artistic boundaries.</p>
                 
-                <p>Looking ahead, my ultimate ambition is to grow as a filmmaker and contribute to major international productions, with a strong aspiration to collaborate with world-leading studios and platforms such as <strong>Netflix, Amazon Prime, Marvel Studios, Warner Bros.</strong>, and others.</p>
+                <p data-key="about_p4">Driven by relentless ambition, my goal is to combine corporate brand transformation with cinema-level visual standards, ultimately aspiring to collaborate with global production powerhouses and top-tier entertainment companies like <strong>Netflix, Amazon Prime, Marvel Studios, and Warner Bros.</strong></p>
                 
-                <p><strong>Available for film, television, and audiovisual productions. Let's create something meaningful.</strong></p>
+                <p><strong data-key="about_p5">Based in Portugal. Available for marketing strategy, brand content, and audiovisual productions. Let's elevate your brand together.</strong></p>
             </div>
 
             <div class="about-split-grid">
@@ -682,15 +743,15 @@
                     <img src="Screenshot_20260926_004216_Gallery.jpg" alt="Simão Martins">
                 </div>
                 <div class="about-side-box">
-                    <h3>Vision & Ambition:</h3>
-                    <p>Cinema is about empathy and atmosphere. I strive to build frames that breathe, allowing audiences to feel the weight of a moment.</p>
-                    <p>Driven by curiosity and a relentless passion for storytelling, I am constantly learning, adapting, and pushing toward high-end cinematic standards.</p>
+                    <h3 data-key="vision_title">Vision & Strategy:</h3>
+                    <p data-key="vision_p1">Great visual content is where strategic marketing meets emotional cinema. Every camera angle and cut serves a clear purpose: engaging the audience and building long-term loyalty.</p>
+                    <p data-key="vision_p2">Constantly evolving, I merge data-driven market insights with artistic direction to ensure every client's vision is brought to life with precision and style.</p>
                 </div>
             </div>
 
             <div class="bts-section">
-                <h3>Behind the Scenes</h3>
-                <p class="bts-note">AI-generated conceptual imagery and visual references exploring filmmaking, cinematography and set environments.</p>
+                <h3 data-key="bts_title">Behind the Scenes</h3>
+                <p class="bts-note" data-key="bts_note">AI-generated conceptual imagery and visual references exploring filmmaking, cinematography and set environments.</p>
                 <div class="bts-grid-3">
                     <div class="bts-item"><img src="ptdc1.png" alt="Behind the Scenes 1"></div>
                     <div class="bts-item"><img src="ptdc2.png" alt="Behind the Scenes 2"></div>
@@ -703,14 +764,14 @@
     <!-- VISTA: FILMMAKING -->
     <div id="page-filmmaking" class="page-view">
         <div class="container">
-            <h2>Filmmaking</h2>
-            <p>Independent short films and visual storytelling projects.</p>
+            <h2 data-key="filmmaking_title">Filmmaking</h2>
+            <p data-key="filmmaking_desc">Independent short films and visual storytelling projects.</p>
             <div class="grid-gallery">
                 <div class="project-card" onclick="showPage('film-still')">
                     <img src="crt metrgem 1.jpg" alt="STILL - Short Film">
                     <div class="project-info">
                         <h3>STILL</h3>
-                        <p style="font-size: 0.85rem; color: #888; margin: 0;">IN PRODUCTION · 2026</p>
+                        <p style="font-size: 0.85rem; color: #888; margin: 0;" data-key="still_status">IN PRODUCTION · 2026</p>
                     </div>
                 </div>
             </div>
@@ -720,15 +781,15 @@
     <!-- VISTA: DETALHE DO FILME "STILL" -->
     <div id="page-film-still" class="page-view">
         <div class="container">
-            <button class="back-btn" onclick="showPage('filmmaking')">← Back to Filmmaking</button>
+            <button class="back-btn" onclick="showPage('filmmaking')" data-key="back_filmmaking">← Back to Filmmaking</button>
             
             <div class="film-section-block">
                 <h1>STILL</h1>
-                <p style="color: #fff; font-weight: 600; margin-bottom: 25px;">ROLE: DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR<br><span style="color: #888; font-weight: 400;">IN PRODUCTION · 2026</span></p>
+                <p style="color: #fff; font-weight: 600; margin-bottom: 25px;"><span data-key="still_roles">ROLE: DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR</span><br><span style="color: #888; font-weight: 400;" data-key="still_status">IN PRODUCTION · 2026</span></p>
                 
-                <p>After becoming increasingly frustrated with his attempts to write and create, a young filmmaker finds himself trapped in a cycle of doubt and isolation. Unable to move forward, he leaves his familiar surroundings and travels away for a brief escape. But distance does not necessarily provide an answer. Eventually, he has to return to the same place where he started — and face the unfinished story once again.</p>
+                <p data-key="still_synopsis">After becoming increasingly frustrated with his attempts to write and create, a young filmmaker finds himself trapped in a cycle of doubt and isolation. Unable to move forward, he leaves his familiar surroundings and travels away for a brief escape. But distance does not necessarily provide an answer. Eventually, he has to return to the same place where he started — and face the unfinished story once again.</p>
                 
-                <p><strong>STILL</strong> is an independent short film exploring creative frustration, isolation and the quiet decision to keep going when nothing seems to be working.</p>
+                <p><strong data-key="still_summary">STILL is an independent short film exploring creative frustration, isolation and the quiet decision to keep going when nothing seems to be working.</strong></p>
                 <img src="crt metrgem 1.jpg" alt="STILL Film Visual">
             </div>
         </div>
@@ -737,72 +798,69 @@
     <!-- VISTA: CLIENT WORK -->
     <div id="page-client-work" class="page-view">
         <div class="container">
-            <h2>Client Work</h2>
-            <p>Commercial and professional work for brands, companies and third-party projects.</p>
+            <h2 data-key="client_title">Client Work</h2>
+            <p data-key="client_subtitle">Commercial and professional work for brands, companies and third-party projects.</p>
             
             <div class="client-project-block">
                 <h3>RE/MAX WHITE</h3>
                 
                 <div class="client-description">
-                    <p>Creation and editing of audiovisual content for RE/MAX, focusing on property presentation and brand visual communication. Responsible for the video shooting and editing process, developing content tailored for social media and digital communication.</p>
+                    <p data-key="remax_desc">Creation and editing of audiovisual content for RE/MAX, focusing on property presentation and brand visual communication. Responsible for the video shooting and editing process, developing content tailored for social media and digital communication.</p>
                 </div>
 
                 <div class="videos-grid">
                     <div class="video-card">
                         <h4>Property Video - João & David</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/7KX912K9JaU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/7KX912K9JaU" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
-
                     <div class="video-card">
                         <h4>Heritage Video - Sónia Cunha Team</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/IKE5Nbscyy4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/IKE5Nbscyy4" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
-
                     <div class="video-card">
                         <h4>Rui Presentation (R3)</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/T3d9dK7d6LU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/T3d9dK7d6LU" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
-
                     <div class="video-card">
                         <h4>Ricardo Presentation</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/wJouauBC1Vs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/wJouauBC1Vs" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="video-card">
                         <h4>David Presentation</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/zMwPzXW-NZA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/zMwPzXW-NZA" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="video-card">
                         <h4>Land Presentation - Luís Beato</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/2Yr72ukYGbI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/2Yr72ukYGbI" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="video-card">
                         <h4>Q&A Final Video 1</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/go4Qq0N0mCc" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/go4Qq0N0mCc" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="video-card">
                         <h4>Agency Day-to-Day - Baga</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/gr3IvbWAsVg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/gr3IvbWAsVg" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="video-card">
                         <h4>Property Video - Mafalda Pratas</h4>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/MlDat6mzJ2c" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/MlDat6mzJ2c" title="YouTube video player" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -810,50 +868,100 @@
         </div>
     </div>
 
-    <!-- VISTA: PHOTOGRAPHY (HAMBURGO E ARTE) -->
-    <div id="page-photography" class="page-view">
+    <!-- VISTA: SPEC WORK & REDESIGNS -->
+    <div id="page-spec-work" class="page-view">
         <div class="container">
-            <!-- Secção Hamburg - Germany -->
-            <div class="photo-section">
-                <h2>Hamburg - Germany</h2>
-                <p>Captures and moments from Hamburg, exploring urban architecture, atmosphere and light.</p>
+            <h2 data-key="spec_title">Spec Work & Redesigns</h2>
+            <p data-key="spec_subtitle">Uncommissioned creative concepts, speculative commercials, and visual page redesigns created to demonstrate brand potential and modern visual direction.</p>
+
+            <div class="client-project-block">
+                <h3 data-key="spec_commercials_title">Spec Commercials</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;" data-key="spec_commercials_desc">Conceptual video projects created independently to showcase product storytelling and commercial video editing.</p>
                 
-                <!-- Vídeos de Hamburgo -->
-                <div class="videos-grid" style="margin-bottom: 25px;">
+                <div class="videos-grid">
                     <div class="video-card">
-                        <h4>Hamburg Video 1</h4>
+                        <h4 data-key="vacuum_title">Robot Vacuum Cleaner — Concept Commercial</h4>
                         <div class="video-container">
-                            <video controls src="1.mp4"></video>
+                            <video controls src="robo aspirador.mp4"></video>
                         </div>
                     </div>
+
                     <div class="video-card">
-                        <h4>Hamburg Video 2</h4>
+                        <h4 data-key="sony_title">Sony Headphones — Concept Commercial</h4>
                         <div class="video-container">
-                            <video controls src="2.mp4"></video>
+                            <video controls src="sony fones.mp4"></video>
                         </div>
                     </div>
-                    <div class="video-card">
-                        <h4>Hamburg Video 3</h4>
-                        <div class="video-container">
-                            <video controls src="3.mp4"></video>
+                </div>
+            </div>
+
+            <div class="client-project-block">
+                <h3 data-key="redesign_title">Page Redesigns & Visual Upgrades</h3>
+                <p style="color: var(--text-muted); margin-bottom: 25px;" data-key="redesign_desc">Examples of layout overhauls, comparing original brand layouts with improved visual proposals.</p>
+
+                <div class="redesign-item">
+                    <h4 data-key="concept1_title">Brand Page Concept #1</h4>
+                    <div class="comparison-grid">
+                        <div class="comparison-box">
+                            <span data-key="original_label">Original Page</span>
+                            <img src="redesign1-original.jpg" alt="Original Page Layout">
                         </div>
-                    </div>
-                    <div class="video-card">
-                        <h4>Hamburg Video 4</h4>
-                        <div class="video-container">
-                            <video controls src="4.mp4"></video>
-                        </div>
-                    </div>
-                    <!-- 5º Vídeo na horizontal -->
-                    <div class="video-card-horizontal">
-                        <h4>Hamburg Video 5 (Destaque Horizontal)</h4>
-                        <div class="video-container-horizontal">
-                            <video controls src="5.mp4"></video>
+                        <div class="arrow-divider">→</div>
+                        <div class="comparison-box">
+                            <span data-key="improved_label">Improved Version</span>
+                            <img src="redesign1-improved.jpg" alt="Improved Page Concept">
                         </div>
                     </div>
                 </div>
 
-                <!-- Fotografias de Hamburgo -->
+                <div class="redesign-item">
+                    <h4 data-key="concept2_title">Brand Page Concept #2</h4>
+                    <div class="comparison-grid">
+                        <div class="comparison-box">
+                            <span data-key="original_label">Original Page</span>
+                            <img src="redesign2-original.jpg" alt="Original Page Layout 2">
+                        </div>
+                        <div class="arrow-divider">→</div>
+                        <div class="comparison-box">
+                            <span data-key="improved_label">Improved Version</span>
+                            <img src="redesign2-improved.jpg" alt="Improved Page Concept 2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VISTA: PHOTOGRAPHY -->
+    <div id="page-photography" class="page-view">
+        <div class="container">
+            <div class="photo-section">
+                <h2>Hamburg - Germany</h2>
+                <p data-key="hamburg_desc">Captures and moments from Hamburg, exploring urban architecture, atmosphere and light.</p>
+                
+                <div class="videos-grid" style="margin-bottom: 25px;">
+                    <div class="video-card">
+                        <h4>Hamburg Video 1</h4>
+                        <div class="video-container"><video controls src="1.mp4"></video></div>
+                    </div>
+                    <div class="video-card">
+                        <h4>Hamburg Video 2</h4>
+                        <div class="video-container"><video controls src="2.mp4"></video></div>
+                    </div>
+                    <div class="video-card">
+                        <h4>Hamburg Video 3</h4>
+                        <div class="video-container"><video controls src="3.mp4"></video></div>
+                    </div>
+                    <div class="video-card">
+                        <h4>Hamburg Video 4</h4>
+                        <div class="video-container"><video controls src="4.mp4"></video></div>
+                    </div>
+                    <div class="video-card-horizontal">
+                        <h4>Hamburg Video 5</h4>
+                        <div class="video-container-horizontal"><video controls src="5.mp4"></video></div>
+                    </div>
+                </div>
+
                 <div class="photo-grid-2" style="margin-top: 30px;">
                     <div class="photo-item"><img src="1.jpeg" alt="Hamburg Photo 1"></div>
                     <div class="photo-item"><img src="2.jpeg" alt="Hamburg Photo 2"></div>
@@ -872,10 +980,9 @@
                 </div>
             </div>
 
-            <!-- Secção Artistic Photography -->
             <div class="photo-section" style="border-top: 1px solid var(--border-color); padding-top: 50px;">
-                <h2>Artistic Photography</h2>
-                <p>A collection of experimental photo series and artistic visual explorations focusing on texture, light, form and mood.</p>
+                <h2 data-key="artistic_title">Artistic Photography</h2>
+                <p data-key="artistic_desc">A collection of experimental photo series and artistic visual explorations focusing on texture, light, form and mood.</p>
                 <div class="photo-grid-2">
                     <div class="photo-item"><img src="photoartistic (10).jpeg" alt="Photoartistic 10"></div>
                     <div class="photo-item"><img src="photoartistic (8).jpeg" alt="Photoartistic 8"></div>
@@ -896,12 +1003,12 @@
     <!-- VISTA: OTHER SKILLS -->
     <div id="page-other" class="page-view">
         <div class="container">
-            <h2>Other Skills</h2>
-            <p>Other creative interests and complementary artistic expressions.</p>
+            <h2 data-key="other_title">Other Skills</h2>
+            <p data-key="other_subtitle">Other creative interests and complementary artistic expressions.</p>
 
             <div class="skill-block">
-                <h3>Line Art & Sketches</h3>
-                <p>The essentials reduced to a single stroke. A minimalist exploration where every line seeks to capture form and essence without excess.</p>
+                <h3 data-key="sketch_title">Line Art & Sketches</h3>
+                <p data-key="sketch_desc">The essentials reduced to a single stroke. A minimalist exploration where every line seeks to capture form and essence without excess.</p>
                 <div class="skill-grid-images">
                     <div class="skill-image-wrapper"><img src="esboço1.png" alt="Sketch 1"></div>
                     <div class="skill-image-wrapper"><img src="esboço2.png" alt="Sketch 2"></div>
@@ -910,8 +1017,8 @@
             </div>
 
             <div class="skill-block">
-                <h3>Playing Guitar</h3>
-                <p>More than notes on a scale, playing the guitar is a pause in time. It is a way to translate into sound what images sometimes cannot explain — a silent dialogue between rhythm, introspection and the pulse of the moment.</p>
+                <h3 data-key="guitar_title">Playing Guitar</h3>
+                <p data-key="guitar_desc">More than notes on a scale, playing the guitar is a pause in time. It is a way to translate into sound what images sometimes cannot explain — a silent dialogue between rhythm, introspection and the pulse of the moment.</p>
                 <div class="skill-grid-images">
                     <div class="skill-image-wrapper"><img src="guitar.png" alt="Guitar 1"></div>
                     <div class="skill-image-wrapper"><img src="guitar2.png" alt="Guitar 2"></div>
@@ -924,7 +1031,7 @@
     <footer>
         <div class="footer-col">
             <h4>SIMÃO MARTINS</h4>
-            <p>Filmmaker · Director · Cinematographer · Editor</p>
+            <p data-key="footer_bio">Marketing Strategist, Filmmaker & Content Creator based in Portugal.</p>
             <div class="social-icons">
                 <a href="https://instagram.com/simao.mcorreia" target="_blank">IG</a>
                 <a href="https://www.linkedin.com/in/sim%C3%A3o-correia/" target="_blank">IN</a>
@@ -932,28 +1039,167 @@
             </div>
         </div>
         <div class="footer-col">
-            <h4>More info</h4>
+            <h4 data-key="footer_nav_title">Navigation</h4>
             <ul>
-                <li><a onclick="showPage('home')">Home</a></li>
-                <li><a onclick="showPage('about')">About</a></li>
-                <li><a onclick="showPage('filmmaking')">Filmmaking</a></li>
-                <li><a onclick="showPage('client-work')">Client Work</a></li>
-                <li><a onclick="showPage('photography')">Photography</a></li>
-                <li><a onclick="showPage('other')">Other Skills</a></li>
+                <li><a onclick="showPage('home')" data-key="nav_home">Home</a></li>
+                <li><a onclick="showPage('about')" data-key="nav_about">About</a></li>
+                <li><a onclick="showPage('filmmaking')" data-key="nav_filmmaking">Filmmaking</a></li>
+                <li><a onclick="showPage('client-work')" data-key="nav_client_work">Client Work</a></li>
+                <li><a onclick="showPage('spec-work')" data-key="nav_spec_work">Spec Work</a></li>
+                <li><a onclick="showPage('photography')" data-key="nav_photography">Photography</a></li>
+                <li><a onclick="showPage('other')" data-key="nav_other">Other Skills</a></li>
             </ul>
         </div>
         <div class="footer-col">
-            <h4>SEARCH</h4>
-            <div style="display: flex; gap: 5px; margin-top: 10px;">
-                <input type="text" placeholder="Search..." style="padding: 8px; background: #111; border: 1px solid #333; color: #fff; border-radius: 3px; width: 100%; outline: none;">
-            </div>
+            <h4 data-key="footer_contact_title">Contact</h4>
+            <p data-key="footer_contact_desc">Available for marketing strategy, brand content creation, and audiovisual productions.</p>
         </div>
         <div class="footer-bottom-logo">
             <img src="logo.jpg" alt="Simão Martins Logo Rodapé">
         </div>
     </footer>
 
+    <!-- SCRIPT DE NAVEGAÇÃO E SISTEMA MULTILÍNGUA -->
     <script>
+        let currentLang = 'en';
+
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_about: "About",
+                nav_filmmaking: "Filmmaking",
+                nav_client_work: "Client Work",
+                nav_spec_work: "Spec Work",
+                nav_photography: "Photography",
+                nav_other: "Other Skills",
+                hero_subtitle: "Marketing Strategist · Filmmaker · Director & Editor",
+                hero_text: "I’m a 21-year-old Marketing & International Business graduate from Paços de Ferreira (Porto). I combine strategic brand growth with high-impact cinematic storytelling to help businesses connect, convert, and exceed client expectations.",
+                still_desc: "After becoming increasingly frustrated with his attempts to write and create, a young filmmaker finds himself trapped in a cycle of doubt and isolation.",
+                still_status: "IN PRODUCTION · 2026",
+                view_project_btn: "View Project →",
+                about_title: "About Me",
+                about_p1: "I’m 21 years old, natural from Paços de Ferreira in the Porto district, Portugal. Holder of a degree in Marketing and International Business, my mission is centered on transforming brand presence and creating high-value audiovisual content that drives business growth while consistently exceeding client expectations.",
+                about_p2: "My background in marketing gives me a strategic mindset: I analyze consumer behavior, market positioning, and brand identity. Meanwhile, my passion for filmmaking, directing, cinematography, and editing allows me to translate those strategic goals into visual narratives that evoke deep emotional responses through thoughtful frames, pacing, and sound design.",
+                about_p3: "During my professional internship, I honed my hands-on experience in real-world workflows, client relations, and visual communication. Parallel to this, I continuously develop independent short films and spec commercials as personal projects to refine my creative vision and push artistic boundaries.",
+                about_p4: "Driven by relentless ambition, my goal is to combine corporate brand transformation with cinema-level visual standards, ultimately aspiring to collaborate with global production powerhouses and top-tier entertainment companies like Netflix, Amazon Prime, Marvel Studios, and Warner Bros.",
+                about_p5: "Based in Portugal. Available for marketing strategy, brand content, and audiovisual productions. Let's elevate your brand together.",
+                vision_title: "Vision & Strategy:",
+                vision_p1: "Great visual content is where strategic marketing meets emotional cinema. Every camera angle and cut serves a clear purpose: engaging the audience and building long-term loyalty.",
+                vision_p2: "Constantly evolving, I merge data-driven market insights with artistic direction to ensure every client's vision is brought to life with precision and style.",
+                bts_title: "Behind the Scenes",
+                bts_note: "AI-generated conceptual imagery and visual references exploring filmmaking, cinematography and set environments.",
+                filmmaking_title: "Filmmaking",
+                filmmaking_desc: "Independent short films and visual storytelling projects.",
+                back_filmmaking: "← Back to Filmmaking",
+                still_roles: "ROLE: DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR",
+                still_synopsis: "After becoming increasingly frustrated with his attempts to write and create, a young filmmaker finds himself trapped in a cycle of doubt and isolation. Unable to move forward, he leaves his familiar surroundings and travels away for a brief escape. But distance does not necessarily provide an answer. Eventually, he has to return to the same place where he started — and face the unfinished story once again.",
+                still_summary: "STILL is an independent short film exploring creative frustration, isolation and the quiet decision to keep going when nothing seems to be working.",
+                client_title: "Client Work",
+                client_subtitle: "Commercial and professional work for brands, companies and third-party projects.",
+                remax_desc: "Creation and editing of audiovisual content for RE/MAX, focusing on property presentation and brand visual communication. Responsible for the video shooting and editing process, developing content tailored for social media and digital communication.",
+                spec_title: "Spec Work & Redesigns",
+                spec_subtitle: "Uncommissioned creative concepts, speculative commercials, and visual page redesigns created to demonstrate brand potential and modern visual direction.",
+                spec_commercials_title: "Spec Commercials",
+                spec_commercials_desc: "Conceptual video projects created independently to showcase product storytelling and commercial video editing.",
+                vacuum_title: "Robot Vacuum Cleaner — Concept Commercial",
+                sony_title: "Sony Headphones — Concept Commercial",
+                redesign_title: "Page Redesigns & Visual Upgrades",
+                redesign_desc: "Examples of layout overhauls, comparing original brand layouts with improved visual proposals.",
+                concept1_title: "Brand Page Concept #1",
+                concept2_title: "Brand Page Concept #2",
+                original_label: "Original Page",
+                improved_label: "Improved Version",
+                hamburg_desc: "Captures and moments from Hamburg, exploring urban architecture, atmosphere and light.",
+                artistic_title: "Artistic Photography",
+                artistic_desc: "A collection of experimental photo series and artistic visual explorations focusing on texture, light, form and mood.",
+                other_title: "Other Skills",
+                other_subtitle: "Other creative interests and complementary artistic expressions.",
+                sketch_title: "Line Art & Sketches",
+                sketch_desc: "The essentials reduced to a single stroke. A minimalist exploration where every line seeks to capture form and essence without excess.",
+                guitar_title: "Playing Guitar",
+                guitar_desc: "More than notes on a scale, playing the guitar is a pause in time. It is a way to translate into sound what images sometimes cannot explain — a silent dialogue between rhythm, introspection and the pulse of the moment.",
+                footer_bio: "Marketing Strategist, Filmmaker & Content Creator based in Portugal.",
+                footer_nav_title: "Navigation",
+                footer_contact_title: "Contact",
+                footer_contact_desc: "Available for marketing strategy, brand content creation, and audiovisual productions."
+            },
+            pt: {
+                nav_home: "Início",
+                nav_about: "Sobre Mim",
+                nav_filmmaking: "Cinema & Filmes",
+                nav_client_work: "Trabalhos de Clientes",
+                nav_spec_work: "Conceitos & Redesigns",
+                nav_photography: "Fotografia",
+                nav_other: "Outras Competências",
+                hero_subtitle: "Estrategista de Marketing · Realizador · Diretor de Fotografia & Editor",
+                hero_text: "Tenho 21 anos e sou licenciado em Marketing e Negócios Internacionais, natural de Paços de Ferreira (Porto). Combino o crescimento estratégico de marcas com a narrativa cinematográfica de alto impacto para ajudar as empresas a conectar-se, converter e superar todas as expectativas dos clientes.",
+                still_desc: "Após sentir uma frustração crescente com as suas tentativas de escrita e criação, um jovem realizador vê-se preso num ciclo de dúvida e isolamento.",
+                still_status: "EM PRODUÇÃO · 2026",
+                view_project_btn: "Ver Projeto →",
+                about_title: "Sobre Mim",
+                about_p1: "Tenho 21 anos e sou natural de Paços de Ferreira, no distrito do Porto, Portugal. Licenciado em Marketing e Negócios Internacionais, a minha missão centra-se em transformar a presença de marcas e criar conteúdos audiovisuais de alto valor que impulsionam os negócios, garantindo sempre a máxima satisfação e superação das expectativas dos clientes.",
+                about_p2: "A minha formação em marketing confere-me uma visão altamente estratégica: analiso o comportamento do consumidor, o posicionamento de mercado e a identidade da marca. Ao mesmo tempo, a minha paixão pela realização, cinematografia e edição permite-me traduzir esses objetivos comerciais em narrativas visuais marcantes, capazes de transmitir emoções profundas através de cada cena, enquadramento e ritmo.",
+                about_p3: "Durante o meu estágio profissional, consolidei a experiência prática em dinâmicas reais de trabalho, comunicação e contacto com clientes. Em paralelo, desenvolvo de forma contínua curtas-metragens independentes e anúncios conceptuais como projetos pessoais para aprimorar a minha visão artística e explorar novas linguagens visuais.",
+                about_p4: "Movido por uma forte ambição, o meu objetivo é unir a transformação visual de marcas ao padrão estético do cinema, ambicionando no futuro colaborar com grandes produtoras internacionais e empresas de entretenimento de referência mundial, como a Netflix, Amazon Prime, Marvel Studios e Warner Bros.",
+                about_p5: "Residente em Portugal. Disponível para estratégia de marketing, criação de conteúdos e produções audiovisuais. Vamos transformar a sua marca.",
+                vision_title: "Visão & Estratégia:",
+                vision_p1: "O grande conteúdo visual nasce do encontro entre o marketing estratégico e a emoção do cinema. Cada ângulo de câmara e cada corte têm um propósito claro: envolver o público e criar ligação com a marca.",
+                vision_p2: "Em constante evolução, cruzo dados de mercado com direção artística para garantir que a visão de cada cliente é concretizada com rigor e elevado impacto.",
+                bts_title: "Bastidores",
+                bts_note: "Imagens concetuais geradas por IA explorando o ambiente de rodagem e cinematografia.",
+                filmmaking_title: "Filmmaking",
+                filmmaking_desc: "Curtas-metragens independentes e projetos de narrativa visual.",
+                back_filmmaking: "← Voltar a Filmmaking",
+                still_roles: "FUNÇÕES: REALIZADOR · GUIONISTA · DIRETOR DE FOTOGRAFIA · EDITOR",
+                still_synopsis: "Após sentir uma frustração crescente com as suas tentativas de escrita e criação, um jovem realizador vê-se preso num ciclo de dúvida e isolamento. Sem conseguir avançar, deixa o seu ambiente familiar para uma breve fuga. Mas a distância nem sempre traz respostas. Eventualmente, tem de regressar ao ponto de partida — e enfrentar a história inacabada.",
+                still_summary: "STILL é uma curta-metragem independente sobre frustração criativa, isolamento e a decisão silenciosa de continuar quando nada parece funcionar.",
+                client_title: "Trabalhos com Clientes",
+                client_subtitle: "Projetos comerciais e profissionais para marcas e empresas.",
+                remax_desc: "Criação e edição de conteúdos audiovisuais para a RE/MAX, com foco na apresentação imobiliária e comunicação visual de marca. Responsável pela captação e edição de vídeo adaptado a redes sociais e plataformas digitais.",
+                spec_title: "Projetos Conceptuais & Redesigns",
+                spec_subtitle: "Conceitos criativos independentes, anúncios especulativos e remodelações visuais desenvolvidos para demonstrar o potencial e o posicionamento de marcas.",
+                spec_commercials_title: "Anúncios Conceptuais (Spec Ads)",
+                spec_commercials_desc: "Projetos de vídeo criados autonomamente para demonstrar storytelling de produto e edição comercial.",
+                vacuum_title: "Aspirador Robô — Anúncio Conceptual",
+                sony_title: "Auscultadores Sony — Anúncio Conceptual",
+                redesign_title: "Reformulação de Páginas & Redesigns",
+                redesign_desc: "Exemplos de reformulação de layout, comparando a estrutura original com a versão melhorada.",
+                concept1_title: "Conceito de Página de Marca #1",
+                concept2_title: "Conceito de Página de Marca #2",
+                original_label: "Página Original",
+                improved_label: "Versão Melhorada",
+                hamburg_desc: "Captações e momentos em Hamburgo, explorando a arquitetura urbana, luz e atmosfera.",
+                artistic_title: "Fotografia Artística",
+                artistic_desc: "Série fotográfica experimental explorando textura, luz, forma e ambiente visual.",
+                other_title: "Outras Competências",
+                other_subtitle: "Outros interesses criativos e expressões artísticas complementares.",
+                sketch_title: "Desenho de Linha & Esboços",
+                sketch_desc: "O essencial reduzido a um único traço. Uma exploração minimalista onde cada linha procura capturar a essência da forma.",
+                guitar_title: "Tocar Guitarra",
+                guitar_desc: "Mais do que notas numa escala, tocar guitarra é uma pausa no tempo — um diálogo silencioso entre ritmo e introspeção.",
+                footer_bio: "Estrategista de Marketing, Realizador & Criador de Conteúdos em Portugal.",
+                footer_nav_title: "Navegação",
+                footer_contact_title: "Contacto",
+                footer_contact_desc: "Disponível para consultoria de marketing, criação de conteúdos de marca e produções audiovisuais."
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'pt' : 'en';
+            
+            // Atualiza o texto do botão
+            document.getElementById('lang-btn').innerText = currentLang === 'en' ? 'PT | EN' : 'EN | PT';
+
+            // Atualiza todos os elementos com data-key
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+
         function showPage(pageId) {
             const views = document.querySelectorAll('.page-view');
             views.forEach(view => view.classList.remove('active'));
@@ -961,15 +1207,17 @@
             const target = document.getElementById('page-' + pageId);
             if (target) {
                 target.classList.add('active');
-                window.scrollTo(0, 0);
             }
 
             const navLinks = document.querySelectorAll('nav a');
             navLinks.forEach(link => link.classList.remove('active'));
+            
             const activeNav = document.getElementById('nav-' + pageId);
             if (activeNav) {
                 activeNav.classList.add('active');
             }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
